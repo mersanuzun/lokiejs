@@ -1,6 +1,10 @@
 {
   "name": "@mersanuzun/lokiejs",
+<<<<<<< HEAD
   "version": "1.0.5",
+=======
+  "version": "1.0.0",
+>>>>>>> Reset version
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
