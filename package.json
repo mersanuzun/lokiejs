@@ -51,6 +51,6 @@
     "url": "git+https://github.com/mersanuzun/lokiejs.git"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/mersanuzun/lokiejs"
+    "registry": "https://npm.pkg.github.com/mersanuzun"
   }
 }
