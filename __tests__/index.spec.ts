@@ -1,4 +1,4 @@
-import LokieJS, {LokieObject, SetItemOptions} from "../src/LokieJS";
+import LokieJS, {LokieObject, SetItemOptions} from "../src";
 import * as faker from 'faker';
 import { when } from 'jest-when';
 

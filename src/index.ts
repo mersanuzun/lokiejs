@@ -1,19 +1,6 @@
-type Expire = number | Date;
-export interface SetItemOptions {
-  expire?: Expire,
-}
-export interface LokieObject<T> {
-  expire?: Expire
-  data: T
-}
-export interface LokieJS {
-  setItem<T>(key: string, value: T, options?: SetItemOptions): void
-  getItem<T> (key: string): T | null
-  removeItem(key: string): void
-  sync(excludeKeys?: string[]): void
-}
+import {Expire, LokieJS, LokieObject, SetItemOptions} from "./types";
 
-const LokieJS: LokieJS = {
+const lokieJS: LokieJS = {
   setItem<T>(key: string, value: T, options?: SetItemOptions): void {
     let exp: Expire;
 
@@ -60,11 +47,10 @@ const LokieJS: LokieJS = {
       const value = localStorage.getItem(key);
 
       if (!excludeKeys?.includes(key)) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
         this.setItem(key, value);
       }
     });
   },
 };
 
-export default LokieJS;
+export default lokieJS;
