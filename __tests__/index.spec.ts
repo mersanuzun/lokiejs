@@ -1,8 +1,10 @@
-import LokieJS, {LokieObject, SetItemOptions} from "../src";
+
 import * as faker from 'faker';
 import { when } from 'jest-when';
+import {LokieObject, SetItemOptions} from "../src/types";
+import lokieJS from "../src";
 
-describe('LokieJS', () => {
+describe('lokieJS', () => {
   let localStorageMock;
 
   beforeAll(() => {
@@ -35,7 +37,7 @@ describe('LokieJS', () => {
       };
 
       // when
-      LokieJS.setItem(key, value);
+      lokieJS.setItem(key, value);
 
       // then
       const [ [calledKey, calledObjAsString] ] = localStorageMock.setItem.mock.calls;
@@ -59,7 +61,7 @@ describe('LokieJS', () => {
       };
 
       // when
-      LokieJS.setItem(key, value, setItemOptions);
+      lokieJS.setItem(key, value, setItemOptions);
 
       // then
       const [ [calledKey, calledObjAsString] ] = localStorageMock.setItem.mock.calls;
@@ -81,7 +83,7 @@ describe('LokieJS', () => {
       };
 
       // when
-      LokieJS.setItem(key, value, setItemOptions);
+      lokieJS.setItem(key, value, setItemOptions);
 
       // then
       const [ [calledKey, calledObjAsString] ] = localStorageMock.setItem.mock.calls;
@@ -105,7 +107,7 @@ describe('LokieJS', () => {
         .mockReturnValue(faker.random.word());
 
       // when
-      const value = LokieJS.getItem(key);
+      const value = lokieJS.getItem(key);
 
       // then
       expect(value).toEqual(null);
@@ -133,7 +135,7 @@ describe('LokieJS', () => {
         .mockImplementation(() => mockDate);
 
       // when
-      const value = LokieJS.getItem(key);
+      const value = lokieJS.getItem(key);
 
       // then
       expect(value).toEqual(null);
@@ -154,7 +156,7 @@ describe('LokieJS', () => {
         .mockReturnValue(JSON.stringify(lokieObject));
 
       // when
-      const value = LokieJS.getItem(key);
+      const value = lokieJS.getItem(key);
 
       // then
       expect(value).toEqual(lokieObject.data);
@@ -169,7 +171,7 @@ describe('LokieJS', () => {
       const key: string = faker.random.word();
 
       // when
-      LokieJS.removeItem(key);
+      lokieJS.removeItem(key);
 
       // then
       expect(localStorageMock.removeItem).toHaveBeenNthCalledWith(
@@ -192,7 +194,7 @@ describe('LokieJS', () => {
         .mockReturnValue('value2');
 
       // when
-      LokieJS.sync();
+      lokieJS.sync();
 
       // then
       expect(localStorageMock.setItem).toHaveBeenCalledWith('key1', '{"data":"value1"}');
@@ -211,7 +213,7 @@ describe('LokieJS', () => {
         .mockReturnValue('value2');
 
       // when
-      LokieJS.sync(['key1']);
+      lokieJS.sync(['key1']);
 
       // then
       expect(localStorageMock.setItem).toHaveBeenCalledWith('key2', '{"data":"value2"}');
