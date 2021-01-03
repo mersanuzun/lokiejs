@@ -4,10 +4,23 @@
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "types": "dist/index.d.ts",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mersanuzun/lokiejs/issues"
+  },
+  "homepage": "https://github.com/mersanuzun/lokiejs#readme",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint . --ext .ts",
+    "build": "rollup -c",
+    "watch": "rollup -cw"
+  },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^4.11.1",
     "eslint": "^7.17.0",
@@ -33,21 +46,11 @@
     "tsutils": "~3.17.0",
     "typescript": "^4.0.5"
   },
-  "scripts": {
-    "test": "jest",
-    "lint": "eslint . --ext .ts",
-    "build": "rollup -c",
-    "watch": "rollup -cw"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mersanuzun/lokiejs.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mersanuzun/lokiejs/issues"
-  },
-  "homepage": "https://github.com/mersanuzun/lokiejs#readme"
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/mersanuzun/lokiejs"
+  }
 }
