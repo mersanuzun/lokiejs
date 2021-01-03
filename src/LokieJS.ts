@@ -9,6 +9,7 @@ export interface LokieObject<T> {
 export interface LokieJS {
   setItem<T>(key: string, value: T, options?: SetItemOptions): void
   getItem<T> (key: string): T | null
+  removeItem(key: string): void
   sync(excludeKeys?: string[]): void
 }
 
@@ -48,6 +49,10 @@ const LokieJS: LokieJS = {
 
       return null;
     }
+  },
+
+  removeItem(key: string): void {
+    return localStorage.removeItem(key);
   },
 
   sync(excludeKeys?: string[]): void {

@@ -163,6 +163,22 @@ describe('LokieJS', () => {
     });
   });
 
+  describe('removeItem', () => {
+    it('should remove item', () => {
+      // given
+      const key: string = faker.random.word();
+
+      // when
+      LokieJS.removeItem(key);
+
+      // then
+      expect(localStorageMock.removeItem).toHaveBeenNthCalledWith(
+        1,
+        key
+      );
+    });
+  });
+
   describe('sync', () => {
     it('should sync all key value pairs if excludeKeys is not given as parameter', () => {
       // given
@@ -200,7 +216,6 @@ describe('LokieJS', () => {
       // then
       expect(localStorageMock.setItem).toHaveBeenCalledWith('key2', '{"data":"value2"}');
       expect(localStorageMock.setItem).toHaveBeenCalledTimes(1);
-
     });
   });
 });
