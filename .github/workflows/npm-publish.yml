@@ -28,7 +28,7 @@ jobs:
       - run: git config user.email "mersanuzun@gmail.com"
       - run: git config user.name "Mehmet Ersan Uzun"
       - run: npm version patch
-      - run: npm publish
+      - run: npm publish --force
       - run: git push --follow-tags
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
