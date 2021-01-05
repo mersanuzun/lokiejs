@@ -31,7 +31,7 @@ lokieJS.removeItem('key');
 ```
 
 ### sync
-It syncs all localstorage items. If you want to exclude.
+It syncs all localstorage items. If you want to exclude some keys, you can pass them with array param.
 
 ```javascript
 lokieJS.sync(); // Syncs all items
