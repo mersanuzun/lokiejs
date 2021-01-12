@@ -22,6 +22,7 @@ lokieJS.setItem('key', { lib: 'lokiJS' }, { expire: 3000000 });
 You can get item with key. The value returns after parsing with `JSON.parse`. If you set the item with expire time, it will be checked with current time. If value is expired, it returns null, otherwise returns value.
 ```javascript
 const value = lokieJS.getItem('key');
+const defaultValue = lokieJS.getItem('key', 'defaultValue'); // Returns default value if requested key of value is expired
 ```
 
 ### removeItem
