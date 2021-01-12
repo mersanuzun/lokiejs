@@ -11,7 +11,7 @@ export interface LokieObject<T> {
 
 export interface LokieJS {
   setItem<T>(key: string, value: T, options?: SetItemOptions): void
-  getItem<T> (key: string): T | null
+  getItem<T> (key: string, defaultValue?: any): T | null
   removeItem(key: string): void
   sync(excludeKeys?: string[]): void
 }

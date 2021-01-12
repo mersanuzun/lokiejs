@@ -18,7 +18,7 @@ const lokieJS: LokieJS = {
     localStorage.setItem(key, JSON.stringify(lokieObject));
   },
 
-  getItem<T>(key: string): T | null {
+  getItem<T>(key: string, defaultValue?: any): T | null {
     const now = (new Date()).getTime();
     const objectAsString = localStorage.getItem(key);
     try {
@@ -27,14 +27,14 @@ const lokieJS: LokieJS = {
       if (object.expire && object.expire < now) {
         localStorage.removeItem(key);
 
-        return null;
+        return defaultValue || null;
       }
 
       return object.data;
     } catch (err) {
       console.warn(`Could not get item from localstorage with ${key}`);
 
-      return null;
+      return defaultValue || null;
     }
   },
 

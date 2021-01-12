@@ -116,6 +116,24 @@ describe('lokieJS', () => {
         `Could not get item from localstorage with ${key}`
       );
     });
+    it('should return defaultValue if any error occurred while parsing retrieved object', () => {
+      // given
+      const key = faker.random.word();
+      when(localStorageMock.getItem)
+        .calledWith(key)
+        .mockReturnValue(faker.random.word());
+      const defaultValue = 'defaultValue';
+
+      // when
+      const value = lokieJS.getItem(key, defaultValue);
+
+      // then
+      expect(value).toEqual(defaultValue);
+      expect(console.warn).toHaveBeenNthCalledWith(
+        1,
+        `Could not get item from localstorage with ${key}`
+      );
+    });
     it('should return null if value was expired', () => {
       // given
       const lokieObject: LokieObject<any> = {
@@ -139,6 +157,36 @@ describe('lokieJS', () => {
 
       // then
       expect(value).toEqual(null);
+      expect(console.warn).not.toHaveBeenCalled();
+      expect(localStorageMock.removeItem).toHaveBeenNthCalledWith(
+        1,
+        key
+      );
+    });
+    it('should return defaultValue if value was expired', () => {
+      // given
+      const lokieObject: LokieObject<any> = {
+        data: false,
+        expire: 10,
+      };
+      const defaultValue = faker.random.word();
+
+      const key = faker.random.word();
+      when(localStorageMock.getItem)
+        .calledWith(key)
+        .mockReturnValue(JSON.stringify(lokieObject));
+      const mockDate = new Date(lokieObject.expire.valueOf() + 1);
+      jest
+        .spyOn(global, 'Date')
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        .mockImplementation(() => mockDate);
+
+      // when
+      const value = lokieJS.getItem(key, defaultValue);
+
+      // then
+      expect(value).toEqual(defaultValue);
       expect(console.warn).not.toHaveBeenCalled();
       expect(localStorageMock.removeItem).toHaveBeenNthCalledWith(
         1,
