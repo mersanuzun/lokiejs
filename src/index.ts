@@ -43,13 +43,13 @@ const lokieJS: LokieJS = {
   },
 
   sync(excludeKeys?: string[]): void {
-    Object.keys(localStorage).forEach(key => {
-      const value = localStorage.getItem(key);
+    Object.keys(localStorage)
+      .filter(key => !excludeKeys?.includes(key))
+      .forEach(key => {
+        const value = localStorage.getItem(key);
 
-      if (!excludeKeys?.includes(key)) {
         this.setItem(key, value);
-      }
-    });
+      });
   },
 };
 
